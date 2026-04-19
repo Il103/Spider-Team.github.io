@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spider-Team | Devices</title>
+<style>
+/* استيراد نفس التنسيقات من index.html لضمان التناسق */
+* {
+  margin: 0; padding: 0; box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Arabic", "PingFang SC", "Apple SD Gothic Neo", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  scroll-behavior: smooth; -webkit-tap-highlight-color: transparent;
+}
+body { background: linear-gradient(135deg, #020617, #0f172a); color: white; overflow-x: hidden; min-height: 100vh; }
+body::before {
+  content: ""; position: fixed; width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(239,68,68,0.4), transparent);
+  top: -100px; left: -100px; filter: blur(120px); z-index: -1;
+  animation: floatRed 15s ease-in-out infinite; pointer-events: none;
+}
+nav {
+  display: flex; justify-content: space-between; padding: 20px 50px;
+  backdrop-filter: blur(15px); background: rgba(255,255,255,0.05);
+  border-bottom: 1px solid rgba(255,255,255,0.1); align-items: center;
+}
+nav h2 { color: #ef4444; cursor: pointer; }
+nav a { color: #cbd5e1; margin-inline-start: 20px; text-decoration: none; }
+#lang-select { background: rgba(255, 255, 255, 0.1); color: white; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 5px; padding: 5px; }
+#lang-select option {
+  background: #0f172a;
+  color: white;
+}
+.section { padding: 60px 20px; text-align: center; max-width: 1200px; margin: 0 auto; }
+.section h2 { margin-bottom: 50px; font-size: 32px; position: relative; display: inline-block; }
+.section h2::after { content: ""; position: absolute; bottom: -10px; left: 20%; right: 20%; height: 3px; background: linear-gradient(90deg, #ef4444, #38bdf8); border-radius: 10px; }
+.cards { display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; }
+.card {
+  width: 280px; padding: 20px; border-radius: 20px;
+  background: rgba(255,255,255,0.05); backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.1); transition: 0.3s;
+}
+.card:hover { transform: translateY(-10px); box-shadow: 0 0 30px rgba(239,68,68,0.4); }
+.device-img-container {
+  height: 240px; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 20px;
+  padding: 0; margin-bottom: 15px; background: rgba(255, 255, 255, 0.02);
+  display: flex; justify-content: center; align-items: center; overflow: hidden;
+}
+.device-img-container img { width: 100%; height: 100%; object-fit: contain; transform: scale(1.2); }
+.img-gta4l { transform: scale(1.15) !important; }
+.img-a36xq { transform: scale(1.6) !important; }
+.code-badge {
+  display: inline-block; margin-top: 15px; padding: 8px 15px;
+  background: rgba(239,68,68,0.2); border: 1px solid rgba(239,68,68,0.5);
+  border-radius: 10px; font-size: 13px; color: #fca5a5;
+}
+@keyframes floatRed { 0%, 100% { transform: translate(0, 0); } 33% { transform: translate(100px, 50px); } }
+@media (max-width: 480px) { nav { flex-direction: column; gap: 10px; padding: 15px; } }
+</style>
+</head>
+<body>
+
+<nav>
+  <h2 onclick="location.href='../index.html'">Spider-Team 🕷️</h2>
+  <div>
+    <a href="../index.html" data-i18n="nav-home">Home</a>
+    <select id="lang-select">
+      <option value="en">English</option>
+      <option value="ar">العربية</option>
+      <option value="zh">中文</option>
+      <option value="ko">한국어</option>
+      <option value="fr">Français</option>
+    </select>
+  </div>
+</nav>
+
+<section class="section">
+  <h2 data-i18n="devices-title">Supported Devices</h2>
+  <div class="cards">
+
+    <div class="card">
+      <div class="device-img-container">
+        <img src="../devices/gta4l/gta4l.png" alt="Samsung Tab A7" class="img-gta4l">
+      </div>
+      <h3 data-i18n="d1-name">Samsung Tab A7</h3>
+      <div class="code-badge">gta4l | gta4lwifi</div>
+    </div>
+
+    <div class="card">
+      <div class="device-img-container">
+        <img src="../devices/a36xq/a36xq.png" alt="Samsung A36 5G" class="img-a36xq">
+      </div>
+      <h3 data-i18n="d2-name">Samsung A36 5G</h3>
+      <div class="code-badge">a36xq</div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+const translations = {
+  en: { "nav-home": "Home", "devices-title": "Supported Devices", "d1-name": "Samsung Tab A7", "d2-name": "Samsung A36 5G" },
+  ar: { "nav-home": "الرئيسية", "devices-title": "الأجهزة المدعومة", "d1-name": "سامسونج تاب A7", "d2-name": "سامسونج A36 5G" },
+  zh: { "nav-home": "首页", "devices-title": "支持的设备", "d1-name": "三星 Tab A7", "d2-name": "三星 A36 5G" },
+  ko: { "nav-home": "홈", "devices-title": "지원되는 기기", "d1-name": "삼성 탭 A7", "d2-name": "삼성 A36 5G" },
+  fr: { "nav-home": "Accueil", "devices-title": "Appareils Supportés", "d1-name": "Samsung Tab A7", "d2-name": "Samsung A36 5G" }
+};
+
+const langSelect = document.getElementById('lang-select');
+langSelect.addEventListener('change', (e) => setLanguage(e.target.value));
+
+function setLanguage(lang) {
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (translations[lang][key]) el.innerText = translations[lang][key];
+  });
+  document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
+  localStorage.setItem('selectedLang', lang);
+}
+
+// Sync language from main page
+window.onload = () => {
+  const savedLang = localStorage.getItem('selectedLang') || 'en';
+  langSelect.value = savedLang;
+  setLanguage(savedLang);
+};
+</script>
+</body>
+</html>
