@@ -193,12 +193,14 @@ nav a:hover {
   height: 100%;
   background-color: rgba(0,0,0,0.8);
   backdrop-filter: blur(10px);
+  align-items: center;
+  justify-content: center;
   animation: fadeIn 0.3s ease-out;
 }
 
 .modal-content {
   background: rgba(15, 23, 42, 0.95);
-  margin: 15% auto;
+  margin: 20px;
   padding: 25px;
   border: 1px solid rgba(239, 68, 68, 0.3);
   width: 90%;
@@ -429,7 +431,7 @@ footer {
     <div class="tg-links">
       <a href="https://t.me/spiderteamupdates" target="_blank" class="tg-item">
         <img src="https://t.me/i/userpic/320/spiderteamupdates.jpg" alt="Updates">
-        <span>𝕊𝕡𝕚𝕕𝕖𝕣-𝕋𝕖𝕒𝕞 • 𝔸𝕟𝕕𝕣𝕠𝕚𝕕 𝔻𝕖𝕧𝕖𝕝𝕠𝕡𝕞𝕖𝕟𝕥</span>
+        <span>Spider-Team | Updates</span>
       </a>
       <a href="https://t.me/spiderteamchat" target="_blank" class="tg-item">
         <img src="https://t.me/i/userpic/320/spiderteamchat.jpg" alt="Discussion">
@@ -546,11 +548,11 @@ const dsModal = document.getElementById('ds-modal');
 const closeButtons = document.querySelectorAll('.close-btn');
 
 tgCard.onclick = function() {
-  tgModal.style.display = "block";
+  tgModal.style.display = "flex";
 }
 
 dsCard.onclick = function() {
-  dsModal.style.display = "block";
+  dsModal.style.display = "flex";
   updateDiscordInfo();
 }
 
