@@ -19,10 +19,19 @@
   -webkit-tap-highlight-color: transparent;
 }
 
+:root {
+  --primary-red: #ef4444;
+  --primary-blue: #38bdf8;
+  --bg-dark: #020617;
+  --card-bg: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.1);
+}
+
 body {
-  background: linear-gradient(135deg, #020617, #0f172a);
+  background: var(--bg-dark);
   color: white;
   overflow-x: hidden;
+  line-height: 1.5;
 }
 
 /* 🔥 Glow Red + Blue */
@@ -31,7 +40,7 @@ body::before {
   position: fixed;
   width: 500px;
   height: 500px;
-  background: radial-gradient(circle, rgba(239,68,68,0.4), transparent);
+  background: radial-gradient(circle, rgba(239, 68, 68, 0.15), transparent 70%);
   top: -100px;
   left: -100px;
   filter: blur(120px);
@@ -46,7 +55,7 @@ body::after {
   position: fixed;
   width: 500px;
   height: 500px;
-  background: radial-gradient(circle, rgba(56,189,248,0.3), transparent);
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.15), transparent 70%);
   bottom: -100px;
   right: -100px;
   filter: blur(120px);
@@ -54,6 +63,17 @@ body::after {
   animation: floatBlue 18s ease-in-out infinite;
   pointer-events: none;
   will-change: transform;
+}
+
+::selection {
+  background: var(--primary-red);
+  color: white;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* Navbar */
@@ -461,12 +481,31 @@ footer {
   .hero h1 {
     font-size: 35px;
   }
+  .container.hero-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    text-align: center;
+    padding-top: 20px;
+  }
+  .hero-copy {
+    margin: 0 auto 35px;
+  }
+  .hero-cta {
+    justify-content: center;
+  }
   .rotator {
     min-width: 150px; /* تصغير المساحة للهواتف */
   }
   .hero-visual {
     display: flex;
     margin-top: 30px;
+  }
+  .hero-stage {
+    height: 280px;
+    width: 100%;
+    max-width: 280px;
+    transform: rotateY(0) rotateX(0);
+    perspective: 1000px;
   }
   .card {
     width: 100%;
@@ -506,7 +545,7 @@ footer {
 </nav>
 
 <main>
-  <section class="hero">
+  <section class="hero reveal">
     <div class="container hero-grid">
       <div>
         <div class="eyebrow" data-i18n="hero-eyebrow">Spider-Team • Android Development</div>
@@ -551,11 +590,11 @@ footer {
   </section>
 </main>
 
-<section class="section">
+<section class="section reveal">
   <h2 data-i18n="projects-title">Our Projects</h2>
   <div class="cards">
 
-    <div class="card">
+    <div class="card spotlight-card">
       <h3 data-i18n="p1-title">Web App</h3>
       <p data-i18n="p1-desc">Fast & modern UI</p>
     </div>
@@ -573,16 +612,16 @@ footer {
   </div>
 </section>
 
-<section class="section" id="groups">
+<section class="section reveal" id="groups">
   <h2 data-i18n="groups-title">Our Groups</h2>
   <div class="cards">
 
-    <div class="card" id="tg-card" style="cursor: pointer;">
+    <div class="card spotlight-card" id="tg-card" style="cursor: pointer;">
       <h3 data-i18n="g1-title">Telegram</h3>
       <p data-i18n="g1-desc">Join our community</p>
     </div>
 
-    <div class="card" id="ds-card" style="cursor: pointer;">
+    <div class="card spotlight-card" id="ds-card" style="cursor: pointer;">
       <h3 data-i18n="g2-title">Discord</h3>
       <p data-i18n="g2-desc">Chat with experts</p>
     </div>
@@ -590,7 +629,7 @@ footer {
   </div>
 </section>
 
-<section class="section">
+<section class="section reveal">
   <h2 data-i18n="team-title">Our Team</h2>
   <div class="cards">
 
@@ -795,6 +834,64 @@ window.onload = () => {
     if (navigator.connection.saveData || (navigator.connection.effectiveType && navigator.connection.effectiveType.includes('2g'))) {
       document.body.classList.add('low-perf-mode');
     }
+  }
+
+  // Reveal Animations on Scroll
+  const observerOptions = { threshold: 0.1 };
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = "1";
+        entry.target.style.transform = "translateY(0)";
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Spotlight Effect for Cards
+  const spotlightCards = document.querySelectorAll('.card');
+  spotlightCards.forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      card.style.setProperty('--x', `${x}px`);
+      card.style.setProperty('--y', `${y}px`);
+      
+      // Add spotlight div if not exists
+      if (!card.querySelector('.spotlight')) {
+        const spotlight = document.createElement('div');
+        spotlight.classList.add('spotlight');
+        card.appendChild(spotlight);
+      }
+    });
+  });
+
+  // Hero Parallax Effect
+  const heroVisual = document.querySelector('.hero-visual');
+  const heroStage = document.querySelector('.hero-stage');
+  if (heroVisual && heroStage && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    heroVisual.addEventListener('mousemove', (e) => {
+      const rect = heroVisual.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      
+      const moveX = (e.clientX - centerX) * 0.05; // زيادة الحساسية لأن المساحة صغرت
+      const moveY = (e.clientY - centerY) * 0.05;
+      
+      const rotY = -10 + moveX;
+      const rotX = 5 - moveY;
+      heroStage.style.transform = `rotateY(${rotY}deg) rotateX(${rotX}deg)`;
+      heroStage.style.transition = 'none';
+    });
+
+    // إعادة النافذة لوضعها الطبيعي عند خروج الماوس من منطقة العرض
+    heroVisual.addEventListener('mouseleave', () => {
+      heroStage.style.transition = 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
+      heroStage.style.transform = `rotateY(-10deg) rotateX(5deg)`;
+    });
   }
 };
 </script>

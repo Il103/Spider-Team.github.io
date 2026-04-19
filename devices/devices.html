@@ -10,25 +10,70 @@
 <style>
 /* استيراد نفس التنسيقات من index.html لضمان التناسق */
 * {
-  margin: 0; padding: 0; box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Arabic", "PingFang SC", "Apple SD Gothic Neo", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  scroll-behavior: smooth; -webkit-tap-highlight-color: transparent;
+  scroll-behavior: smooth;
+  -webkit-tap-highlight-color: transparent;
 }
-body { background: linear-gradient(135deg, #020617, #0f172a); color: white; overflow-x: hidden; min-height: 100vh; }
+
+:root {
+  --primary-red: #ef4444;
+  --primary-blue: #38bdf8;
+  --bg-dark: #020617;
+  --card-bg: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.1);
+}
+
+body {
+  background: var(--bg-dark);
+  color: white;
+  overflow-x: hidden;
+  min-height: 100vh;
+  line-height: 1.5;
+}
+
 body::before {
-  content: ""; position: fixed; width: 500px; height: 500px;
-  background: radial-gradient(circle, rgba(239,68,68,0.4), transparent);
-  top: -100px; left: -100px; filter: blur(120px); z-index: -1;
-  animation: floatRed 15s ease-in-out infinite; pointer-events: none;
+  content: "";
+  position: fixed;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(239, 68, 68, 0.15), transparent 70%);
+  top: -100px;
+  left: -100px;
+  filter: blur(120px);
+  z-index: -1;
+  animation: floatRed 15s ease-in-out infinite;
+  pointer-events: none;
   will-change: transform;
 }
+
+body::after {
+  content: "";
+  position: fixed;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.15), transparent 70%);
+  bottom: -100px;
+  right: -100px;
+  filter: blur(120px);
+  z-index: -1;
+  animation: floatBlue 18s ease-in-out infinite;
+  pointer-events: none;
+  will-change: transform;
+}
+
 nav {
   display: flex; justify-content: space-between; padding: 20px 50px;
-  backdrop-filter: blur(15px); background: rgba(255,255,255,0.05);
+  -webkit-backdrop-filter: blur(15px); backdrop-filter: blur(15px); background: rgba(255,255,255,0.05);
   border-bottom: 1px solid rgba(255,255,255,0.1); align-items: center;
+  z-index: 1000;
 }
 nav h2 { color: #ef4444; cursor: pointer; }
 nav a { color: #cbd5e1; margin-inline-start: 20px; text-decoration: none; }
+nav a:hover { color: #ef4444; }
+
 #lang-select { background: rgba(255, 255, 255, 0.1); color: white; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 5px; padding: 5px; }
 #lang-select option {
   background: #0f172a;
@@ -36,15 +81,30 @@ nav a { color: #cbd5e1; margin-inline-start: 20px; text-decoration: none; }
 }
 .section { padding: 60px 20px; text-align: center; max-width: 1200px; margin: 0 auto; }
 .section h2 { margin-bottom: 50px; font-size: 32px; position: relative; display: inline-block; }
-.section h2::after { content: ""; position: absolute; bottom: -10px; left: 20%; right: 20%; height: 3px; background: linear-gradient(90deg, #ef4444, #38bdf8); border-radius: 10px; }
+.section h2::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 20%;
+  right: 20%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary-red), var(--primary-blue));
+  border-radius: 10px;
+}
+
 .cards { display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; }
 .card {
-  width: 280px; padding: 20px; border-radius: 20px;
-  background: rgba(255,255,255,0.05); backdrop-filter: blur(20px);
-  border: 1px solid rgba(255,255,255,0.1); transition: 0.3s;
-  content-visibility: auto; contain-intrinsic-size: 280px 400px;
+  width: 280px; padding: 20px; border-radius: 24px;
+  background: var(--card-bg); -webkit-backdrop-filter: blur(20px); backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative; overflow: hidden;
 }
-.card:hover { transform: translateY(-10px); box-shadow: 0 0 30px rgba(239,68,68,0.4); }
+.card:hover {
+  transform: translateY(-10px);
+  border-color: rgba(239, 68, 68, 0.4);
+  box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.5);
+}
 .device-img-container {
   height: 240px; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 20px;
   padding: 0; margin-bottom: 15px; background: rgba(255, 255, 255, 0.02);
@@ -62,15 +122,45 @@ nav a { color: #cbd5e1; margin-inline-start: 20px; text-decoration: none; }
 .low-perf .card:hover { transform: none; box-shadow: none; }
 .low-perf .device-img-container img { transform: scale(1) !important; image-rendering: auto; }
 
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.spotlight {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(600px circle at var(--x) var(--y), rgba(255,255,255,0.06), transparent 40%);
+  pointer-events: none;
+  z-index: 1;
+}
+
 .img-gta4l { transform: scale(1.15) !important; backface-visibility: hidden; }
-.img-a36xq { transform: scale(1.6) !important; backface-visibility: hidden; }
+.img-a36xq { transform: scale(1.20) !important; backface-visibility: hidden; }
 .code-badge {
   display: inline-block; margin-top: 15px; padding: 8px 15px;
   background: rgba(239,68,68,0.2); border: 1px solid rgba(239,68,68,0.5);
   border-radius: 10px; font-size: 13px; color: #fca5a5;
 }
-@keyframes floatRed { 0%, 100% { transform: translate(0, 0); } 33% { transform: translate(100px, 50px); } }
-@media (max-width: 480px) { nav { flex-direction: column; gap: 10px; padding: 15px; } }
+
+@keyframes floatRed {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(100px, 50px) scale(1.1); }
+}
+@keyframes floatBlue {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  40% { transform: translate(-100px, -50px) scale(1.2); }
+}
+
+@media (max-width: 480px) { mn; gap: 10px; padding: 15px; }
+  .card { width: 100%; max-width: 320px; }
+  .device-img-container { height: 200px; }
+  .section h2 { font-size: 26px; }
+}
 </style>
 </head>
 <body>
@@ -89,12 +179,12 @@ nav a { color: #cbd5e1; margin-inline-start: 20px; text-decoration: none; }
   </div>
 </nav>
 
-<section class="section">
+<section class="section reveal">
   <h2 data-i18n="devices-title">Supported Devices</h2>
   <div class="cards">
 
     <div class="card">
-      <div class="device-img-container">
+      <div class="device-img-container" style="position: relative; z-index: 2;">
         <img src="../devices/gta4l/gta4l.png" alt="Samsung Tab A7" class="img-gta4l" decoding="async" fetchpriority="high" onload="this.classList.add('img-loaded')">
       </div>
       <h3 data-i18n="d1-name">Samsung Tab A7</h3>
@@ -102,7 +192,7 @@ nav a { color: #cbd5e1; margin-inline-start: 20px; text-decoration: none; }
     </div>
 
     <div class="card">
-      <div class="device-img-container">
+      <div class="device-img-container" style="position: relative; z-index: 2;">
         <img src="../devices/a36xq/a36xq.png" alt="Samsung A36 5G" class="img-a36xq" decoding="async" fetchpriority="high" loading="lazy" onload="this.classList.add('img-loaded')">
       </div>
       <h3 data-i18n="d2-name">Samsung A36 5G</h3>
@@ -152,6 +242,36 @@ window.onload = () => {
     // تحديث الحالة إذا تغيرت سرعة النت أثناء التصفح
     conn.onchange = () => location.reload();
   }
+
+  // Reveal Animations on Scroll
+  const observerOptions = { threshold: 0.1 };
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = "1";
+        entry.target.style.transform = "translateY(0)";
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Spotlight Effect for Cards
+  const spotlightCards = document.querySelectorAll('.card');
+  spotlightCards.forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      card.style.setProperty('--x', `${x}px`);
+      card.style.setProperty('--y', `${y}px`);
+      if (!card.querySelector('.spotlight')) {
+        const spotlight = document.createElement('div');
+        spotlight.classList.add('spotlight');
+        card.appendChild(spotlight);
+      }
+    });
+  });
 };
 </script>
 </body>
