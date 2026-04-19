@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Spider-Team | Devices</title>
+<!-- تحميل مسبق للصور الأساسية لزيادة السرعة -->
+<link rel="preload" as="image" href="../devices/gta4l/gta4l.png">
+<link rel="preload" as="image" href="../devices/a36xq/a36xq.png">
 <style>
 /* استيراد نفس التنسيقات من index.html لضمان التناسق */
 * {
@@ -79,7 +82,7 @@ nav a { color: #cbd5e1; margin-inline-start: 20px; text-decoration: none; }
 
     <div class="card">
       <div class="device-img-container">
-        <img src="../devices/gta4l/gta4l.png" alt="Samsung Tab A7" class="img-gta4l">
+        <img src="../devices/gta4l/gta4l.png" alt="Samsung Tab A7" class="img-gta4l" decoding="async">
       </div>
       <h3 data-i18n="d1-name">Samsung Tab A7</h3>
       <div class="code-badge">gta4l | gta4lwifi</div>
@@ -87,7 +90,7 @@ nav a { color: #cbd5e1; margin-inline-start: 20px; text-decoration: none; }
 
     <div class="card">
       <div class="device-img-container">
-        <img src="../devices/a36xq/a36xq.png" alt="Samsung A36 5G" class="img-a36xq">
+        <img src="../devices/a36xq/a36xq.png" alt="Samsung A36 5G" class="img-a36xq" decoding="async">
       </div>
       <h3 data-i18n="d2-name">Samsung A36 5G</h3>
       <div class="code-badge">a36xq</div>
