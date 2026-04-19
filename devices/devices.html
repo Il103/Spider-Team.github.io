@@ -130,6 +130,7 @@ function setLanguage(lang) {
     if (translations[lang][key]) el.innerText = translations[lang][key];
   });
   document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
+  document.documentElement.lang = lang;
   localStorage.setItem('selectedLang', lang);
 }
 
@@ -150,7 +151,6 @@ window.onload = () => {
     
     // تحديث الحالة إذا تغيرت سرعة النت أثناء التصفح
     conn.onchange = () => location.reload();
-    }
   }
 };
 </script>
