@@ -199,6 +199,10 @@ nav a:hover {
   transform: translateY(-10px) scale(1.03);
   box-shadow: 0 0 30px rgba(239,68,68,0.4);
 }
+/* تحسين للأجهزة الضعيفة */
+.low-perf-mode body::before, .low-perf-mode body::after { animation: none !important; opacity: 0.2; }
+.low-perf-mode .card:hover { transform: none; box-shadow: none; }
+.low-perf-mode * { transition: none !important; }
 
 /* Device Styles */
 .device-img-container {
@@ -622,6 +626,13 @@ window.onload = () => {
   const savedLang = localStorage.getItem('selectedLang') || 'en'; // Default to English if no language is saved
   langSelect.value = savedLang; // Set the dropdown to the saved language
   setLanguage(savedLang); // Apply the saved language
+
+  // فحص توفير البيانات والإنترنت الضعيف
+  if ('connection' in navigator) {
+    if (navigator.connection.saveData || (navigator.connection.effectiveType && navigator.connection.effectiveType.includes('2g'))) {
+      document.body.classList.add('low-perf-mode');
+    }
+  }
 };
 </script>
 

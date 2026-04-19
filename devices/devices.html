@@ -20,6 +20,7 @@ body::before {
   background: radial-gradient(circle, rgba(239,68,68,0.4), transparent);
   top: -100px; left: -100px; filter: blur(120px); z-index: -1;
   animation: floatRed 15s ease-in-out infinite; pointer-events: none;
+  will-change: transform;
 }
 nav {
   display: flex; justify-content: space-between; padding: 20px 50px;
@@ -41,6 +42,7 @@ nav a { color: #cbd5e1; margin-inline-start: 20px; text-decoration: none; }
   width: 280px; padding: 20px; border-radius: 20px;
   background: rgba(255,255,255,0.05); backdrop-filter: blur(20px);
   border: 1px solid rgba(255,255,255,0.1); transition: 0.3s;
+  content-visibility: auto; contain-intrinsic-size: 280px 400px;
 }
 .card:hover { transform: translateY(-10px); box-shadow: 0 0 30px rgba(239,68,68,0.4); }
 .device-img-container {
@@ -55,8 +57,13 @@ nav a { color: #cbd5e1; margin-inline-start: 20px; text-decoration: none; }
   transition: opacity 0.4s ease-in-out; /* تأثير ظهور ناعم */
 }
 .img-loaded { opacity: 1 !important; } /* تظهر فور التحميل */
+/* وضع الإنترنت الضعيف: تقليل جودة الرندر والأنيميشن */
+.low-perf body::before { display: none; }
+.low-perf .card:hover { transform: none; box-shadow: none; }
+.low-perf .device-img-container img { transform: scale(1) !important; image-rendering: auto; }
+
 .img-gta4l { transform: scale(1.15) !important; backface-visibility: hidden; }
-.img-a36xq { transform: scale(1.6) !important; backface-visibility: hidden; image-rendering: -webkit-optimize-contrast; }
+.img-a36xq { transform: scale(1.6) !important; backface-visibility: hidden; }
 .code-badge {
   display: inline-block; margin-top: 15px; padding: 8px 15px;
   background: rgba(239,68,68,0.2); border: 1px solid rgba(239,68,68,0.5);
@@ -96,7 +103,7 @@ nav a { color: #cbd5e1; margin-inline-start: 20px; text-decoration: none; }
 
     <div class="card">
       <div class="device-img-container">
-        <img src="../devices/a36xq/a36xq.png" alt="Samsung A36 5G" class="img-a36xq" decoding="sync" fetchpriority="high" onload="this.classList.add('img-loaded')">
+        <img src="../devices/a36xq/a36xq.png" alt="Samsung A36 5G" class="img-a36xq" decoding="async" fetchpriority="high" loading="lazy" onload="this.classList.add('img-loaded')">
       </div>
       <h3 data-i18n="d2-name">Samsung A36 5G</h3>
       <div class="code-badge">a36xq</div>
@@ -132,12 +139,17 @@ window.onload = () => {
   langSelect.value = savedLang;
   setLanguage(savedLang);
 
-  // تحسين جودة الصورة بناءً على سرعة الإنترنت
+  // تحسين الأداء بناءً على سرعة الإنترنت (Adaptive Performance)
   if ('connection' in navigator) {
-    const connection = navigator.connection;
-    if (connection.saveData || connection.effectiveType.includes('2g')) {
-      // إذا كان الإنترنت ضعيفاً، نقوم بتقليل تأثيرات التحجيم لزيادة سرعة الرندر
-      document.querySelectorAll('.device-img-container img').forEach(img => img.style.transform = 'scale(1)');
+    const conn = navigator.connection;
+    const isSlow = conn.saveData || (conn.effectiveType && (conn.effectiveType.includes('2g') || conn.effectiveType.includes('3g')));
+    
+    if (isSlow) {
+      document.body.classList.add('low-perf');
+    }
+    
+    // تحديث الحالة إذا تغيرت سرعة النت أثناء التصفح
+    conn.onchange = () => location.reload();
     }
   }
 };
