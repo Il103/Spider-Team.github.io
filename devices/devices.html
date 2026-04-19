@@ -48,7 +48,13 @@ nav a { color: #cbd5e1; margin-inline-start: 20px; text-decoration: none; }
   padding: 0; margin-bottom: 15px; background: rgba(255, 255, 255, 0.02);
   display: flex; justify-content: center; align-items: center; overflow: hidden;
 }
-.device-img-container img { width: 100%; height: 100%; object-fit: contain; transform: scale(1.2); }
+.device-img-container img { 
+  width: 100%; height: 100%; object-fit: contain; 
+  transform: scale(1.15); 
+  opacity: 0; /* مخفية في البداية */
+  transition: opacity 0.4s ease-in-out; /* تأثير ظهور ناعم */
+}
+.img-loaded { opacity: 1 !important; } /* تظهر فور التحميل */
 .img-gta4l { transform: scale(1.15) !important; }
 .img-a36xq { transform: scale(1.6) !important; }
 .code-badge {
@@ -82,7 +88,7 @@ nav a { color: #cbd5e1; margin-inline-start: 20px; text-decoration: none; }
 
     <div class="card">
       <div class="device-img-container">
-        <img src="../devices/gta4l/gta4l.png" alt="Samsung Tab A7" class="img-gta4l" decoding="async" fetchpriority="high">
+        <img src="../devices/gta4l/gta4l.png" alt="Samsung Tab A7" class="img-gta4l" decoding="async" fetchpriority="high" onload="this.classList.add('img-loaded')">
       </div>
       <h3 data-i18n="d1-name">Samsung Tab A7</h3>
       <div class="code-badge">gta4l | gta4lwifi</div>
@@ -90,7 +96,7 @@ nav a { color: #cbd5e1; margin-inline-start: 20px; text-decoration: none; }
 
     <div class="card">
       <div class="device-img-container">
-        <img src="../devices/a36xq/a36xq.png" alt="Samsung A36 5G" class="img-a36xq" decoding="async" fetchpriority="high">
+        <img src="../devices/a36xq/a36xq.png" alt="Samsung A36 5G" class="img-a36xq" decoding="async" fetchpriority="high" onload="this.classList.add('img-loaded')">
       </div>
       <h3 data-i18n="d2-name">Samsung A36 5G</h3>
       <div class="code-badge">a36xq</div>
@@ -125,6 +131,15 @@ window.onload = () => {
   const savedLang = localStorage.getItem('selectedLang') || 'en';
   langSelect.value = savedLang;
   setLanguage(savedLang);
+
+  // تحسين جودة الصورة بناءً على سرعة الإنترنت
+  if ('connection' in navigator) {
+    const connection = navigator.connection;
+    if (connection.saveData || connection.effectiveType.includes('2g')) {
+      // إذا كان الإنترنت ضعيفاً، نقوم بتقليل تأثيرات التحجيم لزيادة سرعة الرندر
+      document.querySelectorAll('.device-img-container img').forEach(img => img.style.transform = 'scale(1)');
+    }
+  }
 };
 </script>
 </body>
