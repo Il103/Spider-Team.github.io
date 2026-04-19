@@ -485,27 +485,43 @@ footer {
     grid-template-columns: 1fr;
     gap: 30px;
     text-align: center;
-    padding-top: 20px;
+    padding: 20px 10px;
   }
   .hero-copy {
     margin: 0 auto 35px;
+    font-size: 16px;
   }
   .hero-cta {
     justify-content: center;
   }
   .rotator {
-    min-width: 150px; /* تصغير المساحة للهواتف */
+    min-width: 180px; 
   }
   .hero-visual {
     display: flex;
-    margin-top: 30px;
+    margin-top: 40px;
+    justify-content: center;
   }
   .hero-stage {
-    height: 280px;
+    height: 380px; /* زيادة الارتفاع لإعطاء مساحة للعناصر العائمة */
     width: 100%;
-    max-width: 280px;
-    transform: rotateY(0) rotateX(0);
-    perspective: 1000px;
+    max-width: 300px;
+    transform: rotateY(-10deg) rotateX(5deg) scale(0.9); /* الحفاظ على زاوية الـ 3D مع تصغير الحجم */
+    perspective: 800px;
+  }
+  .floating-stat {
+    font-size: 10px;
+    padding: 8px 12px;
+  }
+  .stat-1 { top: 0; right: 10px; }
+  .stat-2 { bottom: 5%; left: 0px; }
+  .stat-3 { top: 40%; left: -10px; }
+
+  .main-panel {
+    padding: 15px;
+  }
+  .main-panel h2 {
+    font-size: 1.5rem;
   }
   .card {
     width: 100%;
