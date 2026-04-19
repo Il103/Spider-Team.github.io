@@ -201,7 +201,7 @@ nav h2 { color: #ef4444; cursor: pointer; font-size: 1.2rem; }
 <body>
 
 <nav>
-  <h2 onclick="location.href='../index.html'">Spider-Team 🕷️</h2>
+  <h2 data-i18n="logo" onclick="location.href='../index.html'">Spider-Team 🕷️</h2>
   <div class="nav-menu">
     <a href="../index.html" data-i18n="nav-home">Home</a>
     <select id="lang-select">
@@ -238,11 +238,11 @@ nav h2 { color: #ef4444; cursor: pointer; font-size: 1.2rem; }
 
 <script>
 const translations = {
-  en: { "nav-home": "Home", "devices-title": "Supported Devices", "d1-name": "Samsung Tab A7", "d2-name": "Samsung A36 5G" },
-  ar: { "nav-home": "الرئيسية", "devices-title": "الأجهزة المدعومة", "d1-name": "سامسونج تاب A7", "d2-name": "سامسونج A36 5G" },
-  zh: { "nav-home": "首页", "devices-title": "支持的设备", "d1-name": "三星 Tab A7", "d2-name": "三星 A36 5G" },
-  ko: { "nav-home": "홈", "devices-title": "지원되는 기기", "d1-name": "삼성 탭 A7", "d2-name": "삼성 A36 5G" },
-  fr: { "nav-home": "Accueil", "devices-title": "Appareils Supportés", "d1-name": "Samsung Tab A7", "d2-name": "Samsung A36 5G" }
+  en: { "logo": "Spider-Team 🕷️", "nav-home": "Home", "devices-title": "Supported Devices", "d1-name": "Samsung Tab A7", "d2-name": "Samsung A36 5G" },
+  ar: { "logo": "فريق سبايدر 🕷️", "nav-home": "الرئيسية", "devices-title": "الأجهزة المدعومة", "d1-name": "سامسونج تاب A7", "d2-name": "سامسونج A36 5G" },
+  zh: { "logo": "蜘蛛团队 🕷️", "nav-home": "首页", "devices-title": "支持的设备", "d1-name": "三星 Tab A7", "d2-name": "三星 A36 5G" },
+  ko: { "logo": "스파이더 팀 🕷️", "nav-home": "홈", "devices-title": "지원되는 기기", "d1-name": "삼성 탭 A7", "d2-name": "삼성 탭 A36 5G" },
+  fr: { "logo": "Équipe Spider 🕷️", "nav-home": "Accueil", "devices-title": "Appareils Supportés", "d1-name": "Samsung Tab A7", "d2-name": "Samsung A36 5G" }
 };
 
 const langSelect = document.getElementById('lang-select');
