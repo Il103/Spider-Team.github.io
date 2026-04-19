@@ -55,8 +55,8 @@ nav a { color: #cbd5e1; margin-inline-start: 20px; text-decoration: none; }
   transition: opacity 0.4s ease-in-out; /* تأثير ظهور ناعم */
 }
 .img-loaded { opacity: 1 !important; } /* تظهر فور التحميل */
-.img-gta4l { transform: scale(1.15) !important; }
-.img-a36xq { transform: scale(1.6) !important; }
+.img-gta4l { transform: scale(1.15) !important; backface-visibility: hidden; }
+.img-a36xq { transform: scale(1.6) !important; backface-visibility: hidden; image-rendering: -webkit-optimize-contrast; }
 .code-badge {
   display: inline-block; margin-top: 15px; padding: 8px 15px;
   background: rgba(239,68,68,0.2); border: 1px solid rgba(239,68,68,0.5);
@@ -96,7 +96,7 @@ nav a { color: #cbd5e1; margin-inline-start: 20px; text-decoration: none; }
 
     <div class="card">
       <div class="device-img-container">
-        <img src="../devices/a36xq/a36xq.png" alt="Samsung A36 5G" class="img-a36xq" decoding="async" fetchpriority="high" onload="this.classList.add('img-loaded')">
+        <img src="../devices/a36xq/a36xq.png" alt="Samsung A36 5G" class="img-a36xq" decoding="sync" fetchpriority="high" onload="this.classList.add('img-loaded')">
       </div>
       <h3 data-i18n="d2-name">Samsung A36 5G</h3>
       <div class="code-badge">a36xq</div>
