@@ -39,7 +39,7 @@ body::before {
   position: fixed;
   width: 500px;
   height: 500px;
-  background: radial-gradient(circle, rgba(239, 68, 68, 0.15), transparent 70%);
+  background: radial-gradient(circle, rgba(239, 68, 68, 0.4), transparent 70%);
   top: -100px;
   left: -100px;
   filter: blur(120px);
@@ -54,7 +54,7 @@ body::after {
   position: fixed;
   width: 500px;
   height: 500px;
-  background: radial-gradient(circle, rgba(56, 189, 248, 0.15), transparent 70%);
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.3), transparent 70%);
   bottom: -100px;
   right: -100px;
   filter: blur(120px);
@@ -156,7 +156,8 @@ nav a:hover { color: #ef4444; }
   40% { transform: translate(-100px, -50px) scale(1.2); }
 }
 
-@media (max-width: 480px) { mn; gap: 10px; padding: 15px; }
+@media (max-width: 480px) { 
+  nav { flex-direction: column; gap: 10px; padding: 15px; }
   .card { width: 100%; max-width: 320px; }
   .device-img-container { height: 200px; }
   .section h2 { font-size: 26px; }
