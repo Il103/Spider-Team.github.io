@@ -566,6 +566,7 @@ function setLanguage(lang) {
   // Handle RTL for Arabic
   document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
   document.documentElement.lang = lang;
+  localStorage.setItem('selectedLang', lang); // Save selected language
 }
 
 // Discord Auto-Update Logic
@@ -611,6 +612,13 @@ window.onclick = function(event) {
     dsModal.style.display = "none";
   }
 }
+
+// Load saved language on page load
+window.onload = () => {
+  const savedLang = localStorage.getItem('selectedLang') || 'en'; // Default to English if no language is saved
+  langSelect.value = savedLang; // Set the dropdown to the saved language
+  setLanguage(savedLang); // Apply the saved language
+};
 </script>
 
 </body>
