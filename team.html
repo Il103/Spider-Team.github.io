@@ -395,7 +395,46 @@ nav h2 {
   transform: translateZ(50px);
 }
 
+.mod-badge {
+  position: absolute;
+  top: 12px;
+  right: 15px;
+  background: linear-gradient(90deg, #38bdf8, #0ea5e9);
+  color: #fff;
+  padding: 3px 10px;
+  border-radius: 8px;
+  font-size: 9px;
+  font-weight: 800;
+  text-transform: uppercase;
+  z-index: 10;
+  box-shadow: 0 0 15px rgba(56, 189, 248, 0.3);
+  transform: translateZ(50px);
+}
+
+/* تصميم خاص لشارة Xiatsuma (أزرق - افتراضي للمشرفين) */
+#m2-card .mod-badge {
+  background: linear-gradient(90deg, #38bdf8, #0ea5e9);
+  box-shadow: 0 0 15px rgba(56, 189, 248, 0.3);
+}
+
+/* تصميم خاص لشارة MK VENOM PRO (أرجواني) */
+#m3-card .mod-badge {
+  background: linear-gradient(90deg, #a855f7, #9333ea);
+  box-shadow: 0 0 15px rgba(168, 85, 247, 0.3);
+}
+
+/* تصميم خاص لشارة BERU (أخضر) */
+#m4-card .mod-badge {
+  background: linear-gradient(90deg, #22c55e, #16a34a);
+  box-shadow: 0 0 15px rgba(34, 197, 94, 0.3);
+}
+
 [dir="rtl"] .leader-badge {
+  right: auto;
+  left: 15px;
+}
+
+[dir="rtl"] .mod-badge {
   right: auto;
   left: 15px;
 }
@@ -527,6 +566,7 @@ footer {
       </div>
 
       <div class="card" id="m2-card" style="cursor: pointer;">
+        <div class="mod-badge" data-i18n="m2-role">Moderator</div>
         <div class="member-avatar">
           <div class="member-avatar-inner">
             <img src="https://github.com/Xiatsuma.png?s=400" alt="Xiatsuma" fetchpriority="high" onerror="this.onerror=null;this.src='logos/spider.png';">
@@ -534,12 +574,13 @@ footer {
         </div>
         <div class="card-content">
           <h3 data-i18n="m2-name">Xiatsuma</h3>
-          <p data-i18n="m2-role">Backend Developer</p>
+          <p data-i18n="m2-role">Moderator</p>
           <p class="bio">Architecting powerful server solutions and high-performance system cores.</p>
         </div>
       </div>
 
       <div class="card" id="m3-card" style="cursor: pointer;">
+        <div class="mod-badge" data-i18n="m3-role">Moderator</div>
         <div class="member-avatar">
           <div class="member-avatar-inner">
             <img src="https://github.com/mkpromvp.png?s=400" alt="MK VENOM PRO" fetchpriority="high" onerror="this.onerror=null;this.src='logos/spider.png';">
@@ -547,12 +588,13 @@ footer {
         </div>
         <div class="card-content">
           <h3 data-i18n="m3-name">MK VENOM PRO</h3>
-          <p data-i18n="m3-role">UI/UX Designer</p>
+          <p data-i18n="m3-role">Moderator</p>
           <p class="bio">Master of visual storytelling and creating intuitive user journeys.</p>
         </div>
       </div>
 
       <div class="card" id="m4-card" style="cursor: pointer;">
+        <div class="mod-badge" data-i18n="m4-role">Moderator</div>
         <div class="member-avatar">
           <div class="member-avatar-inner">
             <img src="https://github.com/Il103.png?s=400" alt="BERU" fetchpriority="high" onerror="this.onerror=null;this.src='logos/spider.png';">
@@ -560,7 +602,7 @@ footer {
         </div>
         <div class="card-content">
           <h3 data-i18n="m4-name">『 𝐁𝐄𝐑𝐔 』</h3>
-          <p data-i18n="m4-role">Project Manager</p>
+          <p data-i18n="m4-role">Moderator</p>
           <p class="bio">Leading teams toward excellence with strategic planning and coordination.</p>
         </div>
       </div>
@@ -574,7 +616,7 @@ footer {
   <div class="modal-content" style="border-color: rgba(56, 189, 248, 0.4);">
     <span class="close-btn">&times;</span>
     <h3 style="margin-bottom: 5px; color: #38bdf8;" data-i18n="m2-name">Xiatsuma</h3>
-    <p style="font-size: 12px; color: #94a3b8;" data-i18n="m2-role">Backend Developer</p>
+    <p style="font-size: 12px; color: #94a3b8;" data-i18n="m2-role">Moderator</p>
     <div class="social-links">
       <a href="https://github.com/Xiatsuma" target="_blank" class="social-item">
         <span>GitHub</span>
@@ -591,7 +633,7 @@ footer {
   <div class="modal-content" style="border-color: rgba(34, 197, 94, 0.4);">
     <span class="close-btn">&times;</span>
     <h3 style="margin-bottom: 5px; color: #a855f7;" data-i18n="m3-name">MK VENOM PRO</h3>
-    <p style="font-size: 12px; color: #94a3b8;" data-i18n="m3-role">UI/UX Designer</p>
+    <p style="font-size: 12px; color: #94a3b8;" data-i18n="m3-role">Moderator</p>
     <div class="social-links">
       <a href="https://github.com/mkpromvp" target="_blank" class="social-item">
         <span>GitHub</span>
@@ -608,7 +650,7 @@ footer {
   <div class="modal-content" style="border-color: rgba(168, 85, 247, 0.4);">
     <span class="close-btn">&times;</span>
     <h3 style="margin-bottom: 5px; color: #22c55e;" data-i18n="m4-name">『 𝐁𝐄𝐑𝐔 』</h3>
-    <p style="font-size: 12px; color: #94a3b8;" data-i18n="m4-role">Project Manager</p>
+    <p style="font-size: 12px; color: #94a3b8;" data-i18n="m4-role">Moderator</p>
     <div class="social-links">
       <a href="https://github.com/Il103" target="_blank" class="social-item">
         <span>GitHub</span>
@@ -646,32 +688,32 @@ const translations = {
   en: {
     "logo": "Spider-Team 🕷️", "nav-home": "Home", "nav-projects": "Projects", "nav-team": "Team",
     "team-title": "Our Team", "m1-name": "YFMARCO-Dev", "m1-role": "Frontend Developer",
-    "m2-name": "Xiatsuma", "m2-role": "Backend Developer", "m3-name": "MK VENOM PRO", "m3-role": "UI/UX Designer",
-    "m4-name": "『 𝐁𝐄𝐑𝐔 』", "m4-role": "Project Manager", "footer": "© 2026 Spider-Team 🕷️", "leader-tag": "Leader"
+    "m2-name": "Xiatsuma", "m2-role": "Moderator", "m3-name": "MK VENOM PRO", "m3-role": "Moderator",
+    "m4-name": "『 𝐁𝐄𝐑𝐔 』", "m4-role": "Moderator", "footer": "© 2026 Spider-Team 🕷️", "leader-tag": "Leader"
   },
   ar: {
     "logo": "فريق سبايدر 🕷️", "nav-home": "الرئيسية", "nav-projects": "المشاريع", "nav-team": "الفريق",
     "team-title": "فريقنا", "m1-name": "YFMARCO-Dev", "m1-role": "مطور واجهات أمامية",
-    "m2-name": "Xiatsuma", "m2-role": "مطور واجهات خلفية", "m3-name": "MK VENOM PRO", "m3-role": "مصمم واجهة/تجربة مستخدم",
-    "m4-name": "『 𝐁𝐄𝐑𝐔 』", "m4-role": "مدير مشروع", "footer": "© 2026 فريق سبايدر 🕷️", "leader-tag": "القائد"
+    "m2-name": "Xiatsuma", "m2-role": "مشرف", "m3-name": "MK VENOM PRO", "m3-role": "مشرف",
+    "m4-name": "『 𝐁𝐄𝐑𝐔 』", "m4-role": "مشرف", "footer": "© 2026 فريق سبايدر 🕷️", "leader-tag": "القائد"
   },
   zh: {
     "logo": "蜘蛛团队 🕷️", "nav-home": "首页", "nav-projects": "项目", "nav-team": "团队",
     "team-title": "我们的团队", "m1-name": "成员 1", "m1-role": "前端开发",
-    "m2-name": "Xiatsuma", "m2-role": "后端开发", "m3-name": "MK VENOM PRO", "m3-role": "UI/UX 设计师",
-    "m4-name": "『 𝐁𝐄𝐑𝐔 』", "m4-role": "项目经理", "footer": "© 2026 蜘蛛团队 🕷️", "leader-tag": "领导者"
+    "m2-name": "Xiatsuma", "m2-role": "管理员", "m3-name": "MK VENOM PRO", "m3-role": "管理员",
+    "m4-name": "『 𝐁𝐄𝐑𝐔 』", "m4-role": "管理员", "footer": "© 2026 蜘蛛团队 🕷️", "leader-tag": "领导者"
   },
   ko: {
     "logo": "스파이더 팀 🕷️", "nav-home": "홈", "nav-projects": "프로젝트", "nav-team": "팀",
     "team-title": "우리 팀", "m1-name": "멤버 1", "m1-role": "프론트엔드 개발자",
-    "m2-name": "Xiatsuma", "m2-role": "백엔드 개발자", "m3-name": "MK VENOM PRO", "m3-role": "UI/UX 디자이너",
-    "m4-name": "『 𝐁𝐄𝐑𝐔 』", "m4-role": "프로젝트 매니저", "footer": "© 2026 스파이더 팀 🕷️", "leader-tag": "리더"
+    "m2-name": "Xiatsuma", "m2-role": "중재자", "m3-name": "MK VENOM PRO", "m3-role": "중재자",
+    "m4-name": "『 𝐁𝐄𝐑𝐔 』", "m4-role": "중재자", "footer": "© 2026 스파이더 팀 🕷️", "leader-tag": "리더"
   },
   fr: {
     "logo": "Équipe Spider 🕷️", "nav-home": "Accueil", "nav-projects": "Projets", "nav-team": "Équipe",
     "team-title": "Notre Équipe", "m1-name": "Membre 1", "m1-role": "Développeur Frontend",
-    "m2-name": "Xiatsuma", "m2-role": "Développeur Backend", "m3-name": "MK VENOM PRO", "m3-role": "Designer UI/UX",
-    "m4-name": "『 𝐁𝐄𝐑𝐔 』", "m4-role": "Chef de Projet", "footer": "© 2026 Équipe Spider 🕷️", "leader-tag": "Chef"
+    "m2-name": "Xiatsuma", "m2-role": "Modérateur", "m3-name": "MK VENOM PRO", "m3-role": "Modérateur",
+    "m4-name": "『 𝐁𝐄𝐑𝐔 』", "m4-role": "Modérateur", "footer": "© 2026 Équipe Spider 🕷️", "leader-tag": "Chef"
   }
 };
 
