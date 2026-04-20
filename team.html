@@ -75,6 +75,15 @@ body::after {
   will-change: transform;
 }
 
+/* تأثير الجزيئات العائمة في الخلفية */
+.particle {
+  position: fixed;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: -1;
+}
+
 ::selection {
   background: var(--primary-red);
   color: white;
@@ -145,6 +154,71 @@ nav a.logo-link { /* إضافة فئة لتمييز الرابط */
   color: white;
 }
 
+/* تصميم الزر (CTA Button) */
+.btn {
+  padding: 14px 35px;
+  border-radius: 100px;
+  background: rgba(239, 68, 68, 0.1);
+  border: 2px solid rgba(239, 68, 68, 0.5);
+  color: white;
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 15px;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-block;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn:hover {
+  background: rgba(239, 68, 68, 0.2);
+  border-color: rgba(239, 68, 68, 0.8);
+  transform: scale(1.05) translateY(-3px);
+  box-shadow: 0 8px 25px rgba(239, 68, 68, 0.2);
+}
+
+/* 3D About Section Styles */
+.about-visual {
+  perspective: 1500px;
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.about-panel {
+  background: rgba(15, 23, 42, 0.4);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  padding: 50px 40px;
+  border-radius: 40px;
+  transform-style: preserve-3d;
+  transition: transform 0.1s ease-out;
+  max-width: 900px;
+  position: relative;
+  box-shadow: 0 40px 100px rgba(0,0,0,0.6);
+  backdrop-filter: blur(20px);
+}
+
+.about-panel > * {
+  transition: transform 0.8s cubic-bezier(0.2, 1, 0.3, 1);
+}
+
+.floating-label {
+  position: absolute;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  padding: 6px 14px;
+  border-radius: 12px;
+  font-size: 11px;
+  color: #fca5a5;
+  font-family: monospace;
+  transform: translateZ(100px);
+  pointer-events: none;
+  white-space: nowrap;
+  transition: transform 0.1s ease-out;
+}
+
 /* Sections (من index.html) */
 .section {
   padding: 120px 20px 60px; /* زيادة الـ padding-top لاستيعاب شريط التنقل الثابت */
@@ -177,7 +251,7 @@ nav a.logo-link { /* إضافة فئة لتمييز الرابط */
   justify-content: center;
   flex-wrap: wrap;
   gap: 20px;
-  perspective: 1000px; /* إضافة منظور ثلاثي الأبعاد للحاوية */
+  perspective: 2000px;
 }
 
 .card {
@@ -190,8 +264,7 @@ nav a.logo-link { /* إضافة فئة لتمييز الرابط */
   backdrop-filter: blur(25px);
   border: 1px solid rgba(255, 255, 255, 0.12);
   transform-style: preserve-3d;
-  backface-visibility: hidden;
-  transition: transform 0.1s ease-out, box-shadow 0.3s;
+  transition: transform 0.1s ease-out;
   position: relative;
   overflow: hidden;
   display: flex;
@@ -224,6 +297,8 @@ nav a.logo-link { /* إضافة فئة لتمييز الرابط */
   border-radius: 50%;
   overflow: hidden;
   background: var(--bg-dark);
+  position: relative;
+  transform-style: preserve-3d;
 }
 
 .member-avatar-inner img {
@@ -233,11 +308,12 @@ nav a.logo-link { /* إضافة فئة لتمييز الرابط */
   image-rendering: -webkit-optimize-contrast; /* تحسين وضوح الصورة */
   backface-visibility: hidden;
   will-change: transform;
-  transition: transform 0.5s ease;
+  transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  transform: translateZ(20px);
 }
 
 .card:hover .member-avatar-inner img {
-  transform: scale(1.1);
+  transform: scale(1.1) translateZ(40px);
 }
 
 .card h3 {
@@ -317,7 +393,7 @@ nav a.logo-link { /* إضافة فئة لتمييز الرابط */
   border-radius: 15px;
   text-decoration: none;
   color: white;
-  transition: 0.3s;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   font-weight: 500;
   font-size: 14px;
   border: 1px solid transparent; /* منع القفزة عند التحويم */
@@ -332,10 +408,9 @@ nav a.logo-link { /* إضافة فئة لتمييز الرابط */
 }
 
 #leader-modal .social-item:hover {
-  background: rgba(245, 158, 11, 0.25);
+  background: rgba(245, 158, 11, 0.12);
   transform: scale(1.05);
-  box-shadow: 0 0 20px rgba(245, 158, 11, 0.4);
-  border-color: rgba(245, 158, 11, 0.6);
+  border-color: rgba(245, 158, 11, 0.5);
 }
 
 /* تصميم خاص لأزرار Xiatsuma */
@@ -345,10 +420,9 @@ nav a.logo-link { /* إضافة فئة لتمييز الرابط */
 }
 
 #m2-modal .social-item:hover {
-  background: rgba(56, 189, 248, 0.25);
+  background: rgba(56, 189, 248, 0.12);
   transform: scale(1.05);
-  box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
-  border-color: rgba(56, 189, 248, 0.6);
+  border-color: rgba(56, 189, 248, 0.5);
 }
 
 /* تصميم خاص لأزرار MK VENOM PRO */
@@ -358,10 +432,9 @@ nav a.logo-link { /* إضافة فئة لتمييز الرابط */
 }
 
 #m3-modal .social-item:hover { /* الآن يستخدم الأرجواني */
-  background: rgba(168, 85, 247, 0.25);
+  background: rgba(168, 85, 247, 0.12);
   transform: scale(1.05);
-  box-shadow: 0 0 20px rgba(168, 85, 247, 0.4);
-  border-color: rgba(168, 85, 247, 0.6);
+  border-color: rgba(168, 85, 247, 0.5);
 }
 
 /* تصميم خاص لأزرار BERU */
@@ -371,10 +444,9 @@ nav a.logo-link { /* إضافة فئة لتمييز الرابط */
 }
 
 #m4-modal .social-item:hover { /* الآن يستخدم الأخضر */
-  background: rgba(34, 197, 94, 0.25);
+  background: rgba(34, 197, 94, 0.12);
   transform: scale(1.05);
-  box-shadow: 0 0 20px rgba(34, 197, 94, 0.4);
-  border-color: rgba(34, 197, 94, 0.6);
+  border-color: rgba(34, 197, 94, 0.5);
 }
 
 .leader-card {
@@ -492,6 +564,23 @@ nav a.logo-link { /* إضافة فئة لتمييز الرابط */
   opacity: 1;
 }
 
+/* تحسين للأجهزة الضعيفة */
+.low-perf-mode body::before, .low-perf-mode body::after { animation: none !important; opacity: 0.2; }
+.low-perf-mode .card:hover { transform: none; box-shadow: none; }
+.low-perf-mode * { transition: none !important; }
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
 /* Animations (من index.html) */
 @keyframes floatRed {
   0%, 100% { transform: translate(0, 0) scale(1); }
@@ -528,6 +617,25 @@ footer {
   .section { padding: 100px 20px; }
 }
 </style>
+<script>
+  // Function to initialize floating particles
+  function initParticles() {
+    const container = document.body;
+    for (let i = 0; i < 25; i++) {
+      const particle = document.createElement('div');
+      particle.className = 'particle';
+      const size = Math.random() * 4 + 1 + 'px';
+      particle.style.width = size;
+      particle.style.height = size;
+      particle.style.left = Math.random() * 100 + 'vw';
+      particle.style.top = Math.random() * 100 + 'vh';
+      particle.style.opacity = Math.random() * 0.5;
+      const duration = Math.random() * 10 + 5 + 's';
+      particle.animate([{ transform: 'translate(0, 0)' }, { transform: `translate(${Math.random() * 100 - 50}px, ${Math.random() * 100 - 50}px)` }], { duration: parseFloat(duration) * 1000, iterations: Infinity, direction: 'alternate', easing: 'ease-in-out' });
+      container.appendChild(particle);
+    }
+  }
+</script>
 </head>
 
 <body>
@@ -549,7 +657,21 @@ footer {
 </nav>
 
 <main>
-  <section class="section" id="team">
+  <section class="section reveal" id="about-team">
+    <div class="about-visual">
+      <div class="about-panel">
+        <div class="floating-label" style="top: -20px; right: 20px;">[BUILD: STABLE]</div>
+        <div class="floating-label" style="bottom: 40px; left: -30px;">android_core.cpp</div>
+        <h2 data-i18n="about-team-title" style="margin-bottom: 25px;">About Spider-Team</h2>
+        <p class="hero-copy" data-i18n="about-team-desc" style="max-width: 800px; margin: 0 auto 40px; color: #cbd5e1; font-size: 1.1rem;">
+          At Spider-Team, we are a collective of passionate Android developers and enthusiasts dedicated to pushing the boundaries of mobile technology. We craft high-performance custom ROMs and innovative system tools, striving to deliver a seamless, secure, and feature-rich experience for our users. Our mission is to empower the Android community with cutting-edge solutions and foster a collaborative environment for growth and innovation.
+        </p>
+        <a class="btn" href="index.html#groups" data-i18n="about-team-cta">Join Our Community</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section reveal" id="team">
     <h2 data-i18n="team-title">Our Team</h2>
     <div class="cards">
 
@@ -691,31 +813,46 @@ const translations = {
     "logo": "Spider-Team 🕷️", "nav-home": "Home", "nav-projects": "Projects", "nav-team": "Team",
     "team-title": "Our Team", "m1-name": "YFMARCO-Dev", "m1-role": "Frontend Developer",
     "m2-name": "Xiatsuma", "m2-role": "Moderator", "m3-name": "MK VENOM PRO", "m3-role": "Moderator",
-    "m4-name": "『 𝐁𝐄𝐑𝐔 』", "m4-role": "Moderator", "footer": "© 2026 Spider-Team 🕷️", "leader-tag": "Leader"
+    "m4-name": "『 𝐁𝐄𝐑𝐔 』", "m4-role": "Moderator", "footer": "© 2026 Spider-Team 🕷️", "leader-tag": "Leader",
+    "about-team-title": "About Spider-Team",
+    "about-team-desc": "At Spider-Team, we are a collective of passionate Android developers and enthusiasts dedicated to pushing the boundaries of mobile technology. We craft high-performance custom ROMs and innovative system tools, striving to deliver a seamless, secure, and feature-rich experience for our users. Our mission is to empower the Android community with cutting-edge solutions and foster a collaborative environment for growth and innovation.",
+    "about-team-cta": "Join Our Community"
   },
   ar: {
     "logo": "فريق سبايدر 🕷️", "nav-home": "الرئيسية", "nav-projects": "المشاريع", "nav-team": "الفريق",
     "team-title": "فريقنا", "m1-name": "YFMARCO-Dev", "m1-role": "مطور واجهات أمامية",
     "m2-name": "Xiatsuma", "m2-role": "مشرف", "m3-name": "MK VENOM PRO", "m3-role": "مشرف",
-    "m4-name": "『 𝐁𝐄𝐑𝐔 』", "m4-role": "مشرف", "footer": "© 2026 فريق سبايدر 🕷️", "leader-tag": "القائد"
+    "m4-name": "『 𝐁𝐄𝐑𝐔 』", "m4-role": "مشرف", "footer": "© 2026 فريق سبايدر 🕷️", "leader-tag": "القائد",
+    "about-team-title": "عن فريق سبايدر",
+    "about-team-desc": "في فريق سبايدر، نحن مجموعة من مطوري أندرويد المتحمسين والمتحمسين لدفع حدود تكنولوجيا الهاتف المحمول. نصنع رومات مخصصة عالية الأداء وأدوات نظام مبتكرة، ونسعى جاهدين لتقديم تجربة سلسة وآمنة وغنية بالميزات لمستخدمينا. مهمتنا هي تمكين مجتمع أندرويد بحلول متطورة وتعزيز بيئة تعاونية للنمو والابتكار.",
+    "about-team-cta": "انضم إلى مجتمعنا"
   },
   zh: {
     "logo": "蜘蛛团队 🕷️", "nav-home": "首页", "nav-projects": "项目", "nav-team": "团队",
     "team-title": "我们的团队", "m1-name": "成员 1", "m1-role": "前端开发",
     "m2-name": "Xiatsuma", "m2-role": "管理员", "m3-name": "MK VENOM PRO", "m3-role": "管理员",
-    "m4-name": "『 𝐁𝐄𝐑𝐔 』", "m4-role": "管理员", "footer": "© 2026 蜘蛛团队 🕷️", "leader-tag": "领导者"
+    "m4-name": "『 𝐁𝐄𝐑𝐔 』", "m4-role": "管理员", "footer": "© 2026 蜘蛛团队 🕷️", "leader-tag": "领导者",
+    "about-team-title": "关于蜘蛛团队",
+    "about-team-desc": "在蜘蛛团队，我们是一群充满热情的 Android 开发者和爱好者，致力于推动移动技术的边界。我们打造高性能的定制 ROM 和创新的系统工具，努力为用户提供无缝、安全且功能丰富的体验。我们的使命是为 Android 社区提供尖端解决方案，并培养一个协作的成长和创新环境。",
+    "about-team-cta": "加入我们的社区"
   },
   ko: {
     "logo": "스파이더 팀 🕷️", "nav-home": "홈", "nav-projects": "프로젝트", "nav-team": "팀",
     "team-title": "우리 팀", "m1-name": "멤버 1", "m1-role": "프론트엔드 개발자",
     "m2-name": "Xiatsuma", "m2-role": "중재자", "m3-name": "MK VENOM PRO", "m3-role": "중재자",
-    "m4-name": "『 𝐁𝐄𝐑𝐔 』", "m4-role": "중재자", "footer": "© 2026 스파이더 팀 🕷️", "leader-tag": "리더"
+    "m4-name": "『 𝐁𝐄𝐑𝐔 』", "m4-role": "중재자", "footer": "© 2026 스파이더 팀 🕷️", "leader-tag": "리더",
+    "about-team-title": "스파이더 팀 소개",
+    "about-team-desc": "스파이더 팀은 모바일 기술의 한계를 뛰어넘기 위해 헌신하는 열정적인 안드로이드 개발자 및 애호가 집단입니다. 우리는 고성능 맞춤형 ROM과 혁신적인 시스템 도구를 제작하여 사용자에게 원활하고 안전하며 기능이 풍부한 경험을 제공하기 위해 노력합니다. 우리의 사명은 최첨단 솔루션으로 안드로이드 커뮤니티에 힘을 실어주고 성장과 혁신을 위한 협력 환경을 조성하는 것입니다.",
+    "about-team-cta": "커뮤니티 가입"
   },
   fr: {
     "logo": "Équipe Spider 🕷️", "nav-home": "Accueil", "nav-projects": "Projets", "nav-team": "Équipe",
     "team-title": "Notre Équipe", "m1-name": "Membre 1", "m1-role": "Développeur Frontend",
     "m2-name": "Xiatsuma", "m2-role": "Modérateur", "m3-name": "MK VENOM PRO", "m3-role": "Modérateur",
-    "m4-name": "『 𝐁𝐄𝐑𝐔 』", "m4-role": "Modérateur", "footer": "© 2026 Équipe Spider 🕷️", "leader-tag": "Chef"
+    "m4-name": "『 𝐁𝐄𝐑𝐔 』", "m4-role": "Modérateur", "footer": "© 2026 Équipe Spider 🕷️", "leader-tag": "Chef",
+    "about-team-title": "À propos de l'équipe Spider",
+    "about-team-desc": "Chez Spider-Team, nous sommes un collectif de développeurs et de passionnés d'Android dédiés à repousser les limites de la technologie mobile. Nous créons des ROM personnalisées haute performance et des outils système innovants, nous efforçant d'offrir une expérience fluide, sécurisée et riche en fonctionnalités à nos utilisateurs. Notre mission est de donner à la communauté Android des solutions de pointe et de favoriser un environnement collaboratif pour la croissance et l'innovation.",
+    "about-team-cta": "Rejoignez notre communauté"
   }
 };
 
@@ -780,11 +917,29 @@ function initModals() {
   };
 }
 
+function initParticles() {
+  const container = document.body;
+  for (let i = 0; i < 25; i++) {
+    const particle = document.createElement('div');
+    particle.className = 'particle';
+    const size = Math.random() * 4 + 1 + 'px';
+    particle.style.width = size;
+    particle.style.height = size;
+    particle.style.left = Math.random() * 100 + 'vw';
+    particle.style.top = Math.random() * 100 + 'vh';
+    particle.style.opacity = Math.random() * 0.5;
+    const duration = Math.random() * 10 + 5 + 's';
+    particle.animate([{ transform: 'translate(0, 0)' }, { transform: `translate(${Math.random() * 100 - 50}px, ${Math.random() * 100 - 50}px)` }], { duration: parseFloat(duration) * 1000, iterations: Infinity, direction: 'alternate', easing: 'ease-in-out' });
+    container.appendChild(particle);
+  }
+}
+
 window.onload = () => {
   const savedLang = localStorage.getItem('selectedLang') || 'en';
   langSelect.value = savedLang;
   setLanguage(savedLang);
   initModals();
+  initParticles(); // Call initParticles here
 
   // فحص توفير البيانات والإنترنت الضعيف
   if ('connection' in navigator) {
@@ -792,35 +947,74 @@ window.onload = () => {
       document.body.classList.add('low-perf-mode');
     }
   }
-
-  // إضافة تفاعل الـ 3D والـ Spotlight للكروت
-  const cards = document.querySelectorAll('.card');
   
-  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    cards.forEach(card => {
+  // Reveal Animations on Scroll
+  const observerOptions = { threshold: 0.1 };
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = "1";
+        entry.target.style.transform = "translateY(0)";
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Spotlight Effect for Cards and 3D Tilt
+  const memberCards = document.querySelectorAll('.cards .card');
+  const aboutPanelContainer = document.querySelector('#about-team .about-visual');
+  const aboutPanel = document.querySelector('.about-panel');
+  const floatingLabels = aboutPanel ? aboutPanel.querySelectorAll('.floating-label') : [];
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) { // Apply 3D tilt only if motion is not reduced
+    // Member Cards 3D Tilt
+    memberCards.forEach(card => {
       card.addEventListener('mousemove', e => {
         const rect = card.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
-
-        // تحديث إحداثيات الكشاف
         card.style.setProperty('--x', `${x}px`);
         card.style.setProperty('--y', `${y}px`);
-
-        // حساب زوايا الدوران (3D Tilt)
         const centerX = rect.width / 2;
         const centerY = rect.height / 2;
-        const rotateX = (y - centerY) / 10;
-        const rotateY = (centerX - x) / 10;
-
-        card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
+        const rotateX = (centerY - y) / 12;
+        const rotateY = (x - centerX) / 12;
+        card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.04, 1.04, 1.04)`;
       });
-
       card.addEventListener('mouseleave', () => {
-        card.style.transform = 'rotateX(0deg) rotateY(0deg) scale(1)';
-        card.style.transition = 'transform 0.5s ease';
+        card.style.transform = 'rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+        card.style.transition = 'transform 0.6s cubic-bezier(0.23, 1, 0.32, 1)';
       });
     });
+
+    // About Panel - Smooth Momentum Parallax
+    if (aboutPanelContainer && aboutPanel) {
+      aboutPanelContainer.addEventListener('mousemove', e => {
+        const rect = aboutPanelContainer.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = (centerY - y) / 25;
+        const rotateY = (x - centerX) / 25;
+
+        aboutPanel.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+
+        floatingLabels.forEach(label => {
+          const labelRotateX = (centerY - y) / 15;
+          const labelRotateY = (x - centerX) / 15;
+          label.style.transform = `translateZ(100px) rotateX(${labelRotateX}deg) rotateY(${labelRotateY}deg)`;
+        });
+      });
+
+      aboutPanelContainer.addEventListener('mouseleave', () => {
+        aboutPanel.style.transform = 'rotateX(0deg) rotateY(0deg)';
+        floatingLabels.forEach(label => {
+          label.style.transform = 'translateZ(100px) rotateX(0deg) rotateY(0deg)';
+        });
+      });
+    }
   }
 };
 </script>
