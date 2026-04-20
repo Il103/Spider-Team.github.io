@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spider-Team - Our Team</title>
+<link rel="icon" type="image/png" href="logos/spider.png">
+
+<!-- تحميل الصور مسبقاً في الخلفية لتكون جاهزة عند فتح صفحة الأجهزة -->
+<link rel="prefetch" href="devices/gta4l/gta4l.png">
+<link rel="prefetch" href="devices/a36xq/a36xq.png">
+
+<style>
+/* قم بتضمين نفس أنماط CSS من index.html هنا للحفاظ على التناسق */
+/* أو الأفضل، قم بربط ملف CSS خارجي */
+/* لأغراض هذا المثال، سأضع الأنماط الأساسية مباشرة */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Arabic", "PingFang SC", "Apple SD Gothic Neo", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  scroll-behavior: smooth;
+  -webkit-tap-highlight-color: transparent;
+}
+
+:root {
+  --primary-red: #ef4444;
+  --primary-blue: #38bdf8;
+  --bg-dark: #020617;
+  --card-bg: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.1);
+}
+
+body {
+  background: var(--bg-dark);
+  color: white;
+  overflow-x: hidden;
+  line-height: 1.5;
+}
+
+/* Glow Red + Blue (من index.html) */
+body::before {
+  content: "";
+  position: fixed;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(239, 68, 68, 0.4), transparent 70%);
+  top: -100px;
+  left: -100px;
+  filter: blur(120px);
+  z-index: -1;
+  animation: floatRed 15s ease-in-out infinite;
+  pointer-events: none;
+  will-change: transform;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.3), transparent 70%);
+  bottom: -100px;
+  right: -100px;
+  filter: blur(120px);
+  z-index: -1;
+  animation: floatBlue 18s ease-in-out infinite;
+  pointer-events: none;
+  will-change: transform;
+}
+
+::selection {
+  background: var(--primary-red);
+  color: white;
+}
+
+/* Navbar (من index.html) */
+nav {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 1200px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 25px;
+  background: rgba(15, 23, 42, 0.6);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 100px;
+  z-index: 1000;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+nav h2 {
+  color: #ef4444;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.nav-menu a {
+  color: #cbd5e1;
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 50px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.nav-menu a:hover {
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+}
+
+/* Language Selector (من index.html) */
+#lang-select {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+  padding: 5px;
+  cursor: pointer;
+}
+
+#lang-select option {
+  background: #0f172a;
+  color: white;
+}
+
+/* Sections (من index.html) */
+.section {
+  padding: 120px 20px 60px; /* زيادة الـ padding-top لاستيعاب شريط التنقل الثابت */
+  text-align: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section h2 {
+  margin-bottom: 50px;
+  font-size: 32px;
+  position: relative;
+  display: inline-block;
+}
+
+.section h2::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 20%;
+  right: 20%;
+  height: 3px;
+  background: linear-gradient(90deg, #ef4444, #38bdf8);
+  border-radius: 10px;
+}
+
+/* Cards (من index.html) */
+.cards {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  perspective: 1000px; /* إضافة منظور ثلاثي الأبعاد للحاوية */
+}
+
+.card {
+  width: 400px;
+  min-height: 150px;
+  padding: 25px 20px;
+  border-radius: 32px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
+  -webkit-backdrop-filter: blur(25px);
+  backdrop-filter: blur(25px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  transition: transform 0.1s ease-out, box-shadow 0.3s;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+  text-align: left;
+}
+
+.card > * {
+  transform: translateZ(35px);
+}
+
+.member-avatar {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  margin: 0;
+  position: relative;
+  padding: 5px;
+  background: linear-gradient(45deg, var(--primary-red), var(--primary-blue));
+  transform: translateZ(60px);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+  flex-shrink: 0;
+}
+
+.member-avatar-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+  background: var(--bg-dark);
+}
+
+.member-avatar-inner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.card:hover .member-avatar-inner img {
+  transform: scale(1.1);
+}
+
+.card h3 {
+  font-size: 1.2rem;
+  margin-top: 0;
+  margin-bottom: 4px;
+  font-weight: 600;
+  background: linear-gradient(to bottom, #fff, #94a3b8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.card p[data-i18n$="-role"] {
+  color: var(--primary-red);
+  font-weight: 600;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.leader-card {
+  border: 1px solid rgba(245, 158, 11, 0.3) !important;
+  cursor: pointer;
+}
+
+/* Modal Styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.8);
+  backdrop-filter: blur(10px);
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.modal-content {
+  background: rgba(15, 23, 42, 0.95);
+  margin: 20px;
+  padding: 30px;
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  width: 90%;
+  max-width: 350px;
+  border-radius: 25px;
+  position: relative;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+  text-align: center;
+}
+
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 24px;
+  cursor: pointer;
+  color: #94a3b8;
+}
+
+.social-links {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.social-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 12px;
+  border-radius: 15px;
+  text-decoration: none;
+  color: white;
+  transition: 0.3s;
+  font-weight: 500;
+  font-size: 14px;
+  border: 1px solid transparent; /* منع القفزة عند التحويم */
+}
+
+.social-item span { margin-inline-start: 10px; }
+
+/* تصميم خاص لأزرار القائد */
+#leader-modal .social-item {
+  background: rgba(245, 158, 11, 0.1);
+  border: 1px solid rgba(245, 158, 11, 0.2);
+}
+
+#leader-modal .social-item:hover {
+  background: rgba(245, 158, 11, 0.25);
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(245, 158, 11, 0.4);
+  border-color: rgba(245, 158, 11, 0.6);
+}
+
+/* تصميم خاص لأزرار Xiatsuma */
+#m2-modal .social-item {
+  background: rgba(56, 189, 248, 0.1);
+  border: 1px solid rgba(56, 189, 248, 0.2);
+}
+
+#m2-modal .social-item:hover {
+  background: rgba(56, 189, 248, 0.25);
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+  border-color: rgba(56, 189, 248, 0.6);
+}
+
+/* تصميم خاص لأزرار MK VENOM PRO */
+#m3-modal .social-item { /* الآن يستخدم الأرجواني */
+  background: rgba(168, 85, 247, 0.1);
+  border: 1px solid rgba(168, 85, 247, 0.2);
+}
+
+#m3-modal .social-item:hover { /* الآن يستخدم الأرجواني */
+  background: rgba(168, 85, 247, 0.25);
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.4);
+  border-color: rgba(168, 85, 247, 0.6);
+}
+
+/* تصميم خاص لأزرار BERU */
+#m4-modal .social-item { /* الآن يستخدم الأخضر */
+  background: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.2);
+}
+
+#m4-modal .social-item:hover { /* الآن يستخدم الأخضر */
+  background: rgba(34, 197, 94, 0.25);
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(34, 197, 94, 0.4);
+  border-color: rgba(34, 197, 94, 0.6);
+}
+
+.leader-card {
+  border: 1px solid rgba(245, 158, 11, 0.3) !important;
+}
+
+.leader-badge {
+  position: absolute;
+  top: 12px;
+  right: 15px;
+  background: linear-gradient(90deg, #f59e0b, #d97706);
+  color: #fff;
+  padding: 3px 10px;
+  border-radius: 8px;
+  font-size: 9px;
+  font-weight: 800;
+  text-transform: uppercase;
+  z-index: 10;
+  box-shadow: 0 0 15px rgba(245, 158, 11, 0.3);
+  transform: translateZ(50px);
+}
+
+[dir="rtl"] .leader-badge {
+  right: auto;
+  left: 15px;
+}
+
+.card:hover {
+  border-color: rgba(56, 189, 248, 0.4);
+  box-shadow: 0 30px 60px rgba(0,0,0,0.5), 0 0 30px rgba(56, 189, 248, 0.1);
+}
+
+.card .bio {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  margin-top: 10px;
+  line-height: 1.6;
+  transform: translateZ(20px);
+}
+
+/* تحسين الاتجاه للغة العربية */
+[dir="rtl"] .card {
+  text-align: right;
+  flex-direction: row;
+}
+
+/* حاوية للنصوص لضمان الترتيب الرأسي بجانب الصورة */
+.card-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transform: translateZ(35px);
+}
+
+/* تأثير الكشاف (Spotlight) */
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle at var(--x, 50%) var(--y, 50%),
+    rgba(239, 68, 68, 0.15),
+    transparent 80%
+  );
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: 0;
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+/* Animations (من index.html) */
+@keyframes floatRed {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(200px, 100px) scale(1.1); }
+  66% { transform: translate(100px, 300px) scale(0.9); }
+}
+
+@keyframes floatBlue {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  40% { transform: translate(-250px, -150px) scale(1.2); }
+  70% { transform: translate(-100px, -350px) scale(0.8); }
+}
+
+/* Footer (من index.html) */
+footer {
+  text-align: center;
+  padding: 20px;
+  color: #64748b;
+}
+
+/* Responsive Media Queries (من index.html) */
+@media (max-width: 768px) {
+  nav { padding: 15px 25px; }
+  .cards { gap: 15px; }
+}
+
+@media (max-width: 480px) {
+  nav { flex-direction: column; align-items: center; padding: 15px; gap: 10px; }
+  nav a { margin: 5px 10px; }
+  .card { width: 100%; max-width: 320px; }
+}
+
+@media (max-height: 500px) and (orientation: landscape) {
+  .section { padding: 100px 20px; }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <h2 data-i18n="logo">Spider-Team 🕷️</h2>
+  <div class="nav-menu">
+    <a href="index.html" data-i18n="nav-home">Home</a>
+    <a href="index.html#projects" data-i18n="nav-projects">Projects</a>
+    <a href="team.html" data-i18n="nav-team">Team</a>
+    <select id="lang-select">
+      <option value="en">English</option>
+      <option value="ar">العربية</option>
+      <option value="zh">中文</option>
+      <option value="ko">한국어</option>
+      <option value="fr">Français</option>
+    </select>
+  </div>
+</nav>
+
+<main>
+  <section class="section" id="team">
+    <h2 data-i18n="team-title">Our Team</h2>
+    <div class="cards">
+
+      <div class="card leader-card" id="leader-card">
+        <div class="leader-badge" data-i18n="leader-tag">Leader</div>
+        <div class="member-avatar">
+          <div class="member-avatar-inner">
+            <img src="https://github.com/YFMARCO-Dev.png" alt="YFMARCO-Dev" loading="lazy" onerror="this.onerror=null;this.src='logos/spider.png';">
+          </div>
+        </div>
+        <div class="card-content">
+          <h3 data-i18n="m1-name">Member 1</h3>
+          <p data-i18n="m1-role">Frontend Developer</p>
+          <p class="bio">Expert in crafting immersive digital experiences and futuristic UI layouts.</p>
+        </div>
+      </div>
+
+      <div class="card" id="m2-card" style="cursor: pointer;">
+        <div class="member-avatar">
+          <div class="member-avatar-inner">
+            <img src="https://github.com/Xiatsuma.png" alt="Xiatsuma" loading="lazy" onerror="this.onerror=null;this.src='logos/spider.png';">
+          </div>
+        </div>
+        <div class="card-content">
+          <h3 data-i18n="m2-name">Xiatsuma</h3>
+          <p data-i18n="m2-role">Backend Developer</p>
+          <p class="bio">Architecting powerful server solutions and high-performance system cores.</p>
+        </div>
+      </div>
+
+      <div class="card" id="m3-card" style="cursor: pointer;">
+        <div class="member-avatar">
+          <div class="member-avatar-inner">
+            <img src="https://github.com/mkpromvp.png" alt="MK VENOM PRO" loading="lazy" onerror="this.onerror=null;this.src='logos/spider.png';">
+          </div>
+        </div>
+        <div class="card-content">
+          <h3 data-i18n="m3-name">MK VENOM PRO</h3>
+          <p data-i18n="m3-role">UI/UX Designer</p>
+          <p class="bio">Master of visual storytelling and creating intuitive user journeys.</p>
+        </div>
+      </div>
+
+      <div class="card" id="m4-card" style="cursor: pointer;">
+        <div class="member-avatar">
+          <div class="member-avatar-inner">
+            <img src="https://github.com/Il103.png" alt="BERU" loading="lazy" onerror="this.onerror=null;this.src='logos/spider.png';">
+          </div>
+        </div>
+        <div class="card-content">
+          <h3 data-i18n="m4-name">『 𝐁𝐄𝐑𝐔 』</h3>
+          <p data-i18n="m4-role">Project Manager</p>
+          <p class="bio">Leading teams toward excellence with strategic planning and coordination.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<!-- Xiatsuma Modal -->
+<div id="m2-modal" class="modal">
+  <div class="modal-content" style="border-color: rgba(56, 189, 248, 0.4);">
+    <span class="close-btn">&times;</span>
+    <h3 style="margin-bottom: 5px; color: #38bdf8;" data-i18n="m2-name">Xiatsuma</h3>
+    <p style="font-size: 12px; color: #94a3b8;" data-i18n="m2-role">Backend Developer</p>
+    <div class="social-links">
+      <a href="https://github.com/Xiatsuma" target="_blank" class="social-item">
+        <span>GitHub</span>
+      </a>
+      <a href="https://t.me/Xiatsuma" target="_blank" class="social-item">
+        <span>Telegram</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- MK VENOM PRO Modal -->
+<div id="m3-modal" class="modal">
+  <div class="modal-content" style="border-color: rgba(34, 197, 94, 0.4);">
+    <span class="close-btn">&times;</span>
+    <h3 style="margin-bottom: 5px; color: #a855f7;" data-i18n="m3-name">MK VENOM PRO</h3>
+    <p style="font-size: 12px; color: #94a3b8;" data-i18n="m3-role">UI/UX Designer</p>
+    <div class="social-links">
+      <a href="https://github.com/mkpromvp" target="_blank" class="social-item">
+        <span>GitHub</span>
+      </a>
+      <a href="https://t.me/MkProMVP" target="_blank" class="social-item">
+        <span>Telegram</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- BERU Modal -->
+<div id="m4-modal" class="modal">
+  <div class="modal-content" style="border-color: rgba(168, 85, 247, 0.4);">
+    <span class="close-btn">&times;</span>
+    <h3 style="margin-bottom: 5px; color: #22c55e;" data-i18n="m4-name">『 𝐁𝐄𝐑𝐔 』</h3>
+    <p style="font-size: 12px; color: #94a3b8;" data-i18n="m4-role">Project Manager</p>
+    <div class="social-links">
+      <a href="https://github.com/Il103" target="_blank" class="social-item">
+        <span>GitHub</span>
+      </a>
+      <a href="https://t.me/beru2dev" target="_blank" class="social-item">
+        <span>Telegram</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- Leader Modal -->
+<div id="leader-modal" class="modal">
+  <div class="modal-content">
+    <span class="close-btn">&times;</span>
+    <h3 style="margin-bottom: 5px; color: #f59e0b;" data-i18n="m1-name">YFMARCO-Dev</h3>
+    <p style="font-size: 12px; color: #94a3b8;" data-i18n="leader-tag">Leader</p>
+    <div class="social-links">
+      <a href="https://github.com/YFMARCO-Dev" target="_blank" class="social-item">
+        <span>GitHub</span>
+      </a>
+      <a href="https://t.me/YFMARCO" target="_blank" class="social-item">
+        <span>Telegram</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p data-i18n="footer">© 2026 Spider-Team 🕷️</p>
+</footer>
+
+<script>
+const translations = {
+  en: {
+    "logo": "Spider-Team 🕷️", "nav-home": "Home", "nav-projects": "Projects", "nav-team": "Team",
+    "team-title": "Our Team", "m1-name": "YFMARCO-Dev", "m1-role": "Frontend Developer",
+    "m2-name": "Xiatsuma", "m2-role": "Backend Developer", "m3-name": "MK VENOM PRO", "m3-role": "UI/UX Designer",
+    "m4-name": "『 𝐁𝐄𝐑𝐔 』", "m4-role": "Project Manager", "footer": "© 2026 Spider-Team 🕷️", "leader-tag": "Leader"
+  },
+  ar: {
+    "logo": "فريق سبايدر 🕷️", "nav-home": "الرئيسية", "nav-projects": "المشاريع", "nav-team": "الفريق",
+    "team-title": "فريقنا", "m1-name": "YFMARCO-Dev", "m1-role": "مطور واجهات أمامية",
+    "m2-name": "Xiatsuma", "m2-role": "مطور واجهات خلفية", "m3-name": "MK VENOM PRO", "m3-role": "مصمم واجهة/تجربة مستخدم",
+    "m4-name": "『 𝐁𝐄𝐑𝐔 』", "m4-role": "مدير مشروع", "footer": "© 2026 فريق سبايدر 🕷️", "leader-tag": "القائد"
+  },
+  zh: {
+    "logo": "蜘蛛团队 🕷️", "nav-home": "首页", "nav-projects": "项目", "nav-team": "团队",
+    "team-title": "我们的团队", "m1-name": "成员 1", "m1-role": "前端开发",
+    "m2-name": "Xiatsuma", "m2-role": "后端开发", "m3-name": "MK VENOM PRO", "m3-role": "UI/UX 设计师",
+    "m4-name": "『 𝐁𝐄𝐑𝐔 』", "m4-role": "项目经理", "footer": "© 2026 蜘蛛团队 🕷️", "leader-tag": "领导者"
+  },
+  ko: {
+    "logo": "스파이더 팀 🕷️", "nav-home": "홈", "nav-projects": "프로젝트", "nav-team": "팀",
+    "team-title": "우리 팀", "m1-name": "멤버 1", "m1-role": "프론트엔드 개발자",
+    "m2-name": "Xiatsuma", "m2-role": "백엔드 개발자", "m3-name": "MK VENOM PRO", "m3-role": "UI/UX 디자이너",
+    "m4-name": "『 𝐁𝐄𝐑𝐔 』", "m4-role": "프로젝트 매니저", "footer": "© 2026 스파이더 팀 🕷️", "leader-tag": "리더"
+  },
+  fr: {
+    "logo": "Équipe Spider 🕷️", "nav-home": "Accueil", "nav-projects": "Projets", "nav-team": "Équipe",
+    "team-title": "Notre Équipe", "m1-name": "Membre 1", "m1-role": "Développeur Frontend",
+    "m2-name": "Xiatsuma", "m2-role": "Développeur Backend", "m3-name": "MK VENOM PRO", "m3-role": "Designer UI/UX",
+    "m4-name": "『 𝐁𝐄𝐑𝐔 』", "m4-role": "Chef de Projet", "footer": "© 2026 Équipe Spider 🕷️", "leader-tag": "Chef"
+  }
+};
+
+const langSelect = document.getElementById('lang-select');
+
+langSelect.addEventListener('change', (e) => {
+  setLanguage(e.target.value);
+});
+
+function setLanguage(lang) {
+  const elements = document.querySelectorAll('[data-i18n]');
+  elements.forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (translations[lang] && translations[lang][key]) {
+      el.innerText = translations[lang][key];
+    }
+  });
+  
+  document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
+  document.documentElement.lang = lang;
+  localStorage.setItem('selectedLang', lang);
+}
+
+function initModals() {
+  const leaderCard = document.getElementById('leader-card');
+  const leaderModal = document.getElementById('leader-modal');
+  const m2Card = document.getElementById('m2-card');
+  const m2Modal = document.getElementById('m2-modal');
+  const m3Card = document.getElementById('m3-card');
+  const m3Modal = document.getElementById('m3-modal');
+  const m4Card = document.getElementById('m4-card');
+  const m4Modal = document.getElementById('m4-modal');
+  const closeButtons = document.querySelectorAll('.close-btn');
+
+  if (leaderCard) leaderCard.onclick = () => leaderModal.style.display = "flex";
+  if (m2Card) m2Card.onclick = () => m2Modal.style.display = "flex";
+  if (m3Card) m3Card.onclick = () => m3Modal.style.display = "flex";
+  if (m4Card) m4Card.onclick = () => m4Modal.style.display = "flex";
+
+  closeButtons.forEach(btn => {
+    btn.onclick = () => {
+      leaderModal.style.display = "none";
+      m2Modal.style.display = "none";
+      m3Modal.style.display = "none";
+      m4Modal.style.display = "none";
+    }
+  });
+
+  window.onclick = (event) => {
+    if (event.target === leaderModal) {
+      leaderModal.style.display = "none";
+    }
+    if (event.target === m2Modal) {
+      m2Modal.style.display = "none";
+    }
+    if (event.target === m3Modal) {
+      m3Modal.style.display = "none";
+    }
+    if (event.target === m4Modal) {
+      m4Modal.style.display = "none";
+    }
+  };
+}
+
+window.onload = () => {
+  const savedLang = localStorage.getItem('selectedLang') || 'en';
+  langSelect.value = savedLang;
+  setLanguage(savedLang);
+  initModals();
+
+  // فحص توفير البيانات والإنترنت الضعيف
+  if ('connection' in navigator) {
+    if (navigator.connection.saveData || (navigator.connection.effectiveType && navigator.connection.effectiveType.includes('2g'))) {
+      document.body.classList.add('low-perf-mode');
+    }
+  }
+
+  // إضافة تفاعل الـ 3D والـ Spotlight للكروت
+  const cards = document.querySelectorAll('.card');
+  
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    cards.forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        // تحديث إحداثيات الكشاف
+        card.style.setProperty('--x', `${x}px`);
+        card.style.setProperty('--y', `${y}px`);
+
+        // حساب زوايا الدوران (3D Tilt)
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = (y - centerY) / 10;
+        const rotateY = (centerX - x) / 10;
+
+        card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'rotateX(0deg) rotateY(0deg) scale(1)';
+        card.style.transition = 'transform 0.5s ease';
+      });
+    });
+  }
+};
+</script>
+
+</body>
+</html>
