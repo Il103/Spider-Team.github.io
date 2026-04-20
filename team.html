@@ -6,6 +6,12 @@
 <title>Spider-Team - Our Team</title>
 <link rel="icon" type="image/png" href="logos/spider.png">
 
+<!-- Preload team member avatars for faster loading -->
+<link rel="preload" as="image" href="https://github.com/YFMARCO-Dev.png">
+<link rel="preload" as="image" href="https://github.com/Xiatsuma.png">
+<link rel="preload" as="image" href="https://github.com/mkpromvp.png">
+<link rel="preload" as="image" href="https://github.com/Il103.png">
+
 <!-- تحميل الصور مسبقاً في الخلفية لتكون جاهزة عند فتح صفحة الأجهزة -->
 <link rel="prefetch" href="devices/gta4l/gta4l.png">
 <link rel="prefetch" href="devices/a36xq/a36xq.png">
@@ -507,7 +513,7 @@ footer {
         <div class="leader-badge" data-i18n="leader-tag">Leader</div>
         <div class="member-avatar">
           <div class="member-avatar-inner">
-            <img src="https://github.com/YFMARCO-Dev.png" alt="YFMARCO-Dev" loading="lazy" onerror="this.onerror=null;this.src='logos/spider.png';">
+            <img src="https://github.com/YFMARCO-Dev.png" alt="YFMARCO-Dev" fetchpriority="high" onerror="this.onerror=null;this.src='logos/spider.png';">
           </div>
         </div>
         <div class="card-content">
@@ -520,7 +526,7 @@ footer {
       <div class="card" id="m2-card" style="cursor: pointer;">
         <div class="member-avatar">
           <div class="member-avatar-inner">
-            <img src="https://github.com/Xiatsuma.png" alt="Xiatsuma" loading="lazy" onerror="this.onerror=null;this.src='logos/spider.png';">
+            <img src="https://github.com/Xiatsuma.png" alt="Xiatsuma" fetchpriority="high" onerror="this.onerror=null;this.src='logos/spider.png';">
           </div>
         </div>
         <div class="card-content">
@@ -533,7 +539,7 @@ footer {
       <div class="card" id="m3-card" style="cursor: pointer;">
         <div class="member-avatar">
           <div class="member-avatar-inner">
-            <img src="https://github.com/mkpromvp.png" alt="MK VENOM PRO" loading="lazy" onerror="this.onerror=null;this.src='logos/spider.png';">
+            <img src="https://github.com/mkpromvp.png" alt="MK VENOM PRO" fetchpriority="high" onerror="this.onerror=null;this.src='logos/spider.png';">
           </div>
         </div>
         <div class="card-content">
@@ -546,7 +552,7 @@ footer {
       <div class="card" id="m4-card" style="cursor: pointer;">
         <div class="member-avatar">
           <div class="member-avatar-inner">
-            <img src="https://github.com/Il103.png" alt="BERU" loading="lazy" onerror="this.onerror=null;this.src='logos/spider.png';">
+            <img src="https://github.com/Il103.png" alt="BERU" fetchpriority="high" onerror="this.onerror=null;this.src='logos/spider.png';">
           </div>
         </div>
         <div class="card-content">
