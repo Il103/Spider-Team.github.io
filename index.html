@@ -104,6 +104,9 @@ nav a.logo-link { /* إضافة فئة لتمييز الرابط */
   font-weight: 700; /* للحفاظ على نفس وزن الخط */
   text-decoration: none; /* إزالة الخط تحت النص */
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .nav-menu {
@@ -569,7 +572,10 @@ footer {
 <body>
 
 <nav>
-  <a href="index.html" class="logo-link" data-i18n="logo">Spider-Team 🕷️</a>
+  <a href="index.html" class="logo-link">
+    <img src="logos/spider1.png" alt="Spider-Team Logo" style="width: 32px; height: 32px; object-fit: contain;">
+    <span data-i18n="logo">Spider-Team</span>
+  </a>
   <div class="nav-menu">
     <a href="#" data-i18n="nav-home">Home</a>
     <a href="#projects" data-i18n="nav-projects">Projects</a>
@@ -708,7 +714,7 @@ footer {
 <script>
 const translations = {
   en: {
-    "logo": "Spider-Team 🕷️", "nav-home": "Home", "nav-projects": "Projects", "nav-team": "Team",
+    "logo": "Spider-Team", "nav-home": "Home", "nav-projects": "Projects", "nav-team": "Team",
     "hero-eyebrow": "Spider-Team", "hero-name": "Spider-Team", "hero-ships": "ships a", "hero-presence": "experience.",
     "hero-desc": "Powering devices with high-performance custom ROMs and innovative system tools.", "hero-btn": "Join Community", "hero-devices": "View Devices",
     "projects-title": "Our Projects", "p1-title": "Web App", "p1-desc": "Fast & modern UI",
@@ -718,7 +724,7 @@ const translations = {
     "hero-3d-label": "System Core", "hero-3d-title": "S P I D E R", "hero-3d-init": "> INITIALIZING_ROM...", "hero-3d-status": "> STATUS: OPTIMIZED", "hero-3d-kernel": "> KERNEL: STABLE", "hero-3d-stat1": "Android 16 Ready", "hero-3d-stat2": "Spider-Team", "hero-3d-stat3": "Secure Core"
   },
   ar: {
-    "logo": "فريق سبايدر 🕷️", "nav-home": "الرئيسية", "nav-projects": "المشاريع", "nav-team": "الفريق",
+    "logo": "فريق سبايدر", "nav-home": "الرئيسية", "nav-projects": "المشاريع", "nav-team": "الفريق",
     "hero-eyebrow": "فريق سبايدر", "hero-name": "فريق سبايدر", "hero-ships": "يقدم تجربة", "hero-presence": "فريدة.",
     "hero-desc": "دعم الأجهزة برومات معدلة عالية الأداء وأدوات نظام مبتكرة.", "hero-btn": "انضم للمجتمع", "hero-devices": "عرض الأجهزة",
     "projects-title": "مشاريعنا", "p1-title": "تطبيق ويب", "p1-desc": "واجهة سريعة وحديثة",
@@ -728,7 +734,7 @@ const translations = {
     "hero-3d-label": "نواة النظام", "hero-3d-title": "S P I D E R", "hero-3d-init": "> جاري تهيئة الروم...", "hero-3d-status": "> الحالة: مثالي", "hero-3d-kernel": "> النواة: مستقرة", "hero-3d-stat1": "أندرويد 16 جاهز", "hero-3d-stat2": "فريق سبايدر", "hero-3d-stat3": "نواة آمنة"
   },
   zh: {
-    "logo": "蜘蛛团队 🕷️", "nav-home": "首页", "nav-projects": "项目", "nav-team": "团队",
+    "logo": "蜘蛛团队", "nav-home": "首页", "nav-projects": "项目", "nav-team": "团队",
     "hero-eyebrow": "蜘蛛团队", "hero-name": "蜘蛛团队", "hero-ships": "打造", "hero-presence": "优质体验。",
     "hero-desc": "通过高性能定制 ROM 和创新系统工具为设备赋能。", "hero-btn": "加入社区", "hero-devices": "查看设备",
     "projects-title": "我们的项目", "p1-title": "Web应用", "p1-desc": "快速现代的UI",
@@ -738,7 +744,7 @@ const translations = {
     "hero-3d-label": "系统核心", "hero-3d-title": "蜘蛛团队", "hero-3d-init": "> 正在初始化 ROM...", "hero-3d-status": "> 状态: 已优化", "hero-3d-kernel": "> 内核: 稳定", "hero-3d-stat1": "Android 16 已就绪", "hero-3d-stat2": "蜘蛛团队", "hero-3d-stat3": "安全核心"
   },
   ko: {
-    "logo": "스파이더 팀 🕷️", "nav-home": "홈", "nav-projects": "프로젝트", "nav-team": "팀",
+    "logo": "스파이더 팀", "nav-home": "홈", "nav-projects": "프로젝트", "nav-team": "팀",
     "hero-eyebrow": "스파이더 팀", "hero-name": "스파이더 팀", "hero-ships": "선사하는", "hero-presence": "프리미엄 경험.",
     "hero-desc": "고성능 커스텀 ROM과 혁신적인 시스템 툴로 기기에 생명력을 불어넣습니다.", "hero-btn": "커뮤니티 가입", "hero-devices": "기기 보기",
     "projects-title": "우리의 프로젝트", "p1-title": "웹 앱", "p1-desc": "빠르고 현대적인 UI",
@@ -748,7 +754,7 @@ const translations = {
     "hero-3d-label": "시스템 코어", "hero-3d-title": "스파이더 팀", "hero-3d-init": "> ROM 초기화 중...", "hero-3d-status": "> 상태: 최적화됨", "hero-3d-kernel": "> 커널: 안정적", "hero-3d-stat1": "안드로이드 16 준비 완료", "hero-3d-stat2": "스파이더 팀", "hero-3d-stat3": "보안 코어"
   },
   fr: {
-    "logo": "Équipe Spider 🕷️", "nav-home": "Accueil", "nav-projects": "Projets", "nav-team": "Équipe",
+    "logo": "Équipe Spider", "nav-home": "Accueil", "nav-projects": "Projets", "nav-team": "Équipe",
     "hero-eyebrow": "Équipe Spider", "hero-name": "Équipe Spider", "hero-ships": "livre une", "hero-presence": "expérience premium.",
     "hero-desc": "Propulsez vos appareils avec des ROM personnalisées haute performance et des outils système innovants.", "hero-btn": "Rejoindre la communauté", "hero-devices": "Voir les appareils",
     "projects-title": "Nos Projets", "p1-title": "Application Web", "p1-desc": "UI rapide et moderne",
