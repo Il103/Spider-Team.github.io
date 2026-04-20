@@ -101,9 +101,11 @@ nav {
   box-shadow: 0 10px 30px rgba(0,0,0,0.3);
 }
 
-nav h2 {
+nav a.logo-link { /* إضافة فئة لتمييز الرابط */
   color: #ef4444;
   font-size: 1.2rem;
+  font-weight: 700; /* للحفاظ على نفس وزن الخط */
+  text-decoration: none; /* إزالة الخط تحت النص */
   cursor: pointer;
 }
 
@@ -531,7 +533,7 @@ footer {
 <body>
 
 <nav>
-  <h2 data-i18n="logo">Spider-Team 🕷️</h2>
+  <a href="index.html" class="logo-link" data-i18n="logo">Spider-Team 🕷️</a>
   <div class="nav-menu">
     <a href="index.html" data-i18n="nav-home">Home</a>
     <a href="index.html#projects" data-i18n="nav-projects">Projects</a>
